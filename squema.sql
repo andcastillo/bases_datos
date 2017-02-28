@@ -60,6 +60,7 @@ CREATE TABLE cancion_album (
 );
  
  CREATE TABLE artista (
- 	id_artista SERIAL PRIMARY KEY,
-          nombre_artista VARCHAR(50) NOT NULL
+	id_artista SERIAL PRIMARY KEY,
+	nombre_artista VARCHAR(50) NOT NULL,
+	fecha_nacimiento DATE
 );
