@@ -25,7 +25,7 @@ INSERT INTO artista(nombre_artista, fecha_nacimiento) VALUES ('Britney Spears', 
 INSERT INTO artista(nombre_artista, fecha_nacimiento) VALUES ('Gran Combo', DATE('06-08-1970'));
 INSERT INTO artista(nombre_artista, fecha_nacimiento) VALUES ('Ozzy Osbourne', DATE('01-01-1960'));
 INSERT INTO artista(nombre_artista, fecha_nacimiento) VALUES ('El Binomio de Oro', DATE('01-01-1985') );
-INSERT INTO artista(nombre_artista, fecha_nacimiento) VALUES ('Johann Sebastian Bach', DATE('21-03-1685'));
+INSERT INTO artista(nombre_artista, fecha_nacimiento) VALUES ('Johann Sebastian Bach', DATE('03-27-1685'));
 
 INSERT INTO album(nombre_album, year) VALUES ('album 1', 1990);
 INSERT INTO album(nombre_album, year) VALUES ('album 2', 1991);
