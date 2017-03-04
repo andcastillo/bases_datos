@@ -1,7 +1,9 @@
 # Curso de bases de datos
 
+``` bash
 docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
 docker run -it --rm --link some-postgres:postgres postgres psql -h postgres -U postgres
+```
 
 ```sql
 \l; lista las bases de datos
