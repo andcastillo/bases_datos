@@ -1,6 +1,6 @@
-INSERT INTO  usuario(nombre_usuario, password) VALUES ('trolololol@gmail.com', '123');
-INSERT INTO  usuario(nombre_usuario, password) VALUES ('azulgrana@gmail.com', 'x123');
-INSERT INTO  usuario(nombre_usuario, password) VALUES ('tyler.durden@gmail.com', 'asdfd');
+INSERT INTO usuario(nombre_usuario, password) VALUES ('trolololol@gmail.com', '123');
+INSERT INTO usuario(nombre_usuario, password) VALUES ('azulgrana@gmail.com', 'x123');
+INSERT INTO usuario(nombre_usuario, password) VALUES ('tyler.durden@gmail.com', 'asdfd');
 
 INSERT INTO lista(nombre_lista, fk_id_usuario) VALUES ('romanticona', 1);
 INSERT INTO lista(nombre_lista, fk_id_usuario) VALUES ('pesada', 1);
