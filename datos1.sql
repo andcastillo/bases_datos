@@ -5,7 +5,7 @@ INSERT INTO usuario(nombre_usuario, password) VALUES ('tyler.durden@gmail.com', 
 INSERT INTO lista(nombre_lista, fk_id_usuario) VALUES ('romanticona', 1);
 INSERT INTO lista(nombre_lista, fk_id_usuario) VALUES ('pesada', 1);
 INSERT INTO lista(nombre_lista, fk_id_usuario) VALUES ('pa bebe', 1);
-INSERT INTO lista(nombre_lista, fk_id_usuario) VALUES ('rock en español', 2);
+INSERT INTO lista(nombre_lista, fk_id_usuario) VALUES ('rock en espanol', 2);
 INSERT INTO lista(nombre_lista, fk_id_usuario) VALUES ('vallenatibiri', 2);
 INSERT INTO lista(nombre_lista, fk_id_usuario) VALUES ('para bailar', 3);
 
