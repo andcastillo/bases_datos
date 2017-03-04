@@ -9,7 +9,8 @@ CREATE DATABASE musica
     LC_COLLATE = 'C'
     LC_CTYPE = 'C'
     TABLESPACE = pg_default
-    CONNECTION LIMIT = -1;
+    CONNECTION LIMIT = -1
+    TEMPLATE template0;
 
 CREATE TABLE usuario(
 	Id_usuario SERIAL PRIMARY KEY,
