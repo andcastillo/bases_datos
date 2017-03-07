@@ -11,3 +11,8 @@ docker run -it --rm --link some-postgres:postgres postgres psql -h postgres -U p
 \dt; lista de relaciones
 \d tabla; Describe la relación tabla
 ```
+
+## Crear imágenes en docker
+
+http://koldohernandez.com/blog/como-crear-imagenes-y-subirlas-a-docker-hub/
+
