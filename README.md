@@ -1,5 +1,5 @@
 # Curso de bases de datos
-# Universidad del Valle
+# Universidad del Valle 2017
 
 ## Crear imagen de Docker con nuestra DB
 
