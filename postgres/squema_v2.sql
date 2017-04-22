@@ -39,7 +39,7 @@ CREATE TABLE usuario(
  
  CREATE TABLE cancion_lista (
     fk_id_cancion INT NOT NULL REFERENCES cancion(id_cancion),
-    fk_id_lista INT NOT NULL REFERENCES lista(id_lista,
+    fk_id_lista INT NOT NULL REFERENCES lista(id_lista),
     indice INT DEFAULT 0 CHECK (indice>=0)
 );
  
