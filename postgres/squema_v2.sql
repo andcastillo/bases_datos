@@ -34,7 +34,7 @@ CREATE TABLE usuario(
     duracion INT NOT NULL DEFAULT 0 CHECK (duracion>=0),
     ruta VARCHAR(140) ,
     fk_id_artista INT NOT NULL REFERENCES artista (id_artista),
-    fk_id_genero INT NOT NULL REFERENCES usuario (id_genero)
+    fk_id_genero INT NOT NULL REFERENCES genero (id_genero)
 );
  
  CREATE TABLE cancion_lista (
