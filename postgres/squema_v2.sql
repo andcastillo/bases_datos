@@ -23,7 +23,7 @@ CREATE TABLE usuario(
  CREATE TABLE lista (
     id_lista SERIAL PRIMARY KEY,
     nombre_lista VARCHAR(50),
-    likes INT DEFAULT 0,
+    likes INT DEFAULT 0 CHECK (likes>=0),
     fk_id_usuario INT NOT NULL REFERENCES usuario (id_usuario)
 );
  
@@ -31,8 +31,8 @@ CREATE TABLE usuario(
  CREATE TABLE cancion (
     id_cancion SERIAL PRIMARY KEY,
     nombre_cancion VARCHAR(50),
-    duracion INT NOT NULL DEFAULT 0,
-    ruta VARCHAR(120),
+    duracion INT NOT NULL DEFAULT 0 CHECK (duracion>=0),
+    ruta VARCHAR(140) ,
     fk_id_artista INT NOT NULL REFERENCES artista (id_artista),
     fk_id_genero INT NOT NULL REFERENCES usuario (id_genero)
 );
@@ -40,7 +40,7 @@ CREATE TABLE usuario(
  CREATE TABLE cancion_lista (
     fk_id_cancion INT NOT NULL REFERENCES cancion(id_cancion),
     fk_id_lista INT NOT NULL REFERENCES lista(id_lista,
-    indice INT DEFAULT 0
+    indice INT DEFAULT 0 CHECK (indice>=0)
 );
  
 
@@ -59,11 +59,11 @@ CREATE TABLE cancion_album (
  
  CREATE TABLE genero (
     id_genero SERIAL PRIMARY KEY,
-   nombre_genero VARCHAR(30) NOT NULL
+   nombre_genero VARCHAR(30) UNIQUE NOT NULL
 );
  
  CREATE TABLE artista (
 	id_artista SERIAL PRIMARY KEY,
-	nombre_artista VARCHAR(50) NOT NULL,
+	nombre_artista VARCHAR(50) UNIQUE NOT NULL,
 	fecha_nacimiento DATE
 );
