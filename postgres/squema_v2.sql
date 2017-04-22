@@ -33,13 +33,13 @@ CREATE TABLE usuario(
     nombre_cancion VARCHAR(50),
     duracion INT NOT NULL DEFAULT 0,
     ruta VARCHAR(120),
-    fk_id_artista INT NOT NULL,
-    fk_id_genero INT NOT NULL
+    fk_id_artista INT NOT NULL REFERENCES artista (id_artista),
+    fk_id_genero INT NOT NULL REFERENCES usuario (id_genero)
 );
  
  CREATE TABLE cancion_lista (
-    fk_id_cancion INT NOT NULL,
-    fk_id_lista INT NOT NULL,
+    fk_id_cancion INT NOT NULL REFERENCES cancion(id_cancion),
+    fk_id_lista INT NOT NULL REFERENCES lista(id_lista,
     indice INT DEFAULT 0
 );
  
@@ -53,8 +53,8 @@ CREATE TABLE usuario(
  
  
 CREATE TABLE cancion_album (
-    fk_id_album INT NOT NULL,
-    fk_id_cancion INT NOT NULL
+    fk_id_album INT NOT NULL REFERENCES album (id_album),
+    fk_id_cancion INT NOT NULL REFERENCES cancion (id_cancion)
 );
  
  CREATE TABLE genero (
