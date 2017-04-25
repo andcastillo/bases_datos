@@ -17,7 +17,8 @@ CREATE DATABASE musica2
 CREATE TABLE usuario(
 	id_usuario SERIAL PRIMARY KEY,
 	nombre_usuario VARCHAR(60) UNIQUE,
-	password VARCHAR(60) CHECK (length(password) > 3)
+	password VARCHAR(60) CHECK (length(password) > 3),
+	premium BOOLEAN DEFAULT FALSE
 );
     
  CREATE TABLE lista (
@@ -64,4 +65,25 @@ CREATE TABLE cancion_album (
     fk_id_album INT NOT NULL REFERENCES album (id_album),
     fk_id_cancion INT NOT NULL REFERENCES cancion (id_cancion)
 );
+ 
 
+ 
+CREATE OR REPLACE FUNCTION f_insertNewList() returns trigger as $$
+DECLARE 
+	maxListas integer:=3;
+	nListas integer:=0;
+BEGIN
+	IF(TG_OP = 'INSERT') THEN
+		SELECT INTO nListas count(*) FROM lista WHERE fk_id_usuario = NEW.fk_id_usuario;
+		IF ( nListas < maxListas) THEN
+			RETURN NEW;
+		ELSE 
+			RETURN NULL;
+		END IF;
+	END IF;
+END
+$$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER insertar_lista BEFORE INSERT
+ON lista FOR EACH ROW EXECUTE PROCEDURE f_insertNewList();
