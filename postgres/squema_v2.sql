@@ -28,7 +28,24 @@ CREATE TABLE usuario(
     fk_id_usuario INT NOT NULL REFERENCES usuario (id_usuario)
 );
  
-    
+ CREATE TABLE artista (
+	id_artista SERIAL PRIMARY KEY,
+	nombre_artista VARCHAR(50) UNIQUE NOT NULL,
+	fecha_nacimiento DATE
+);
+
+ CREATE TABLE genero (
+    id_genero SERIAL PRIMARY KEY,
+   nombre_genero VARCHAR(30) UNIQUE NOT NULL
+);
+
+ CREATE TABLE album (
+    id_album SERIAL PRIMARY KEY,
+    nombre_album VARCHAR(50) NOT NULL,
+    year INT,
+    imagen VARCHAR(120)
+);
+   
  CREATE TABLE cancion (
     id_cancion SERIAL PRIMARY KEY,
     nombre_cancion VARCHAR(50),
@@ -44,41 +61,29 @@ CREATE TABLE usuario(
     indice INT DEFAULT 0 CHECK (indice>=0)
 );
  
-
- CREATE TABLE album (
-    id_album SERIAL PRIMARY KEY,
-    nombre_album VARCHAR(50) NOT NULL,
-    year INT,
-    imagen VARCHAR(120)
-);
- 
- 
 CREATE TABLE cancion_album (
     fk_id_album INT NOT NULL REFERENCES album (id_album),
     fk_id_cancion INT NOT NULL REFERENCES cancion (id_cancion)
 );
  
- CREATE TABLE genero (
-    id_genero SERIAL PRIMARY KEY,
-   nombre_genero VARCHAR(30) UNIQUE NOT NULL
-);
- 
- CREATE TABLE artista (
-	id_artista SERIAL PRIMARY KEY,
-	nombre_artista VARCHAR(50) UNIQUE NOT NULL,
-	fecha_nacimiento DATE
-);
 
+ 
 CREATE OR REPLACE FUNCTION f_insertNewList() returns trigger as $$
 DECLARE 
 	maxListas integer:=3;
+	nListas integer:=0;
 BEGIN
 	IF(TG_OP = 'INSERT') THEN
-		IF (SELECT count(*) AS nLists FROM lista WHERE fk_id_usuario = NEW.fk_id_usuario <= maxListas)
+		SELECT INTO nListas count(*) FROM lista WHERE fk_id_usuario = NEW.fk_id_usuario;
+		IF ( nListas < maxListas) THEN
 			RETURN NEW;
 		ELSE 
 			RETURN NULL;
 		END IF;
 	END IF;
 END
-$$ LANGUAGE plpgsql
+$$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER insertar_lista BEFORE INSERT
+ON lista FOR EACH ROW EXECUTE PROCEDURE f_insertNewList();
