@@ -68,22 +68,32 @@ CREATE TABLE cancion_album (
  
 
  
-CREATE OR REPLACE FUNCTION f_insertNewList() returns trigger as $$
-DECLARE 
-	maxListas integer:=3;
-	nListas integer:=0;
+
+
+CREATE OR REPLACE FUNCTION f_createLista() returns trigger as $$
+DECLARE
+	contador integer:=0;
+	nrolista integer:=3;
+	isPremium boolean;
+
 BEGIN
+
 	IF(TG_OP = 'INSERT') THEN
-		SELECT INTO nListas count(*) FROM lista WHERE fk_id_usuario = NEW.fk_id_usuario;
-		IF ( nListas < maxListas) THEN
-			RETURN NEW;
-		ELSE 
-			RETURN NULL;
-		END IF;
-	END IF;
+			SELECT INTO isPremium premium from usuario where id_usuario=NEW.fk_id_usuario;
+			IF(isPremium = TRUE) THEN
+				RETURN NEW;
+			ELSE
+				SELECT INTO contador count(*) FROM lista WHERE fk_id_usuario= NEW.fk_id_usuario;
+				IF( contador < nrolista) THEN
+					RETURN NEW;
+				ELSE
+					RETURN NULL;
+
+			END IF;
+		END IF;	
+ 	END IF;	
 END
 $$ LANGUAGE plpgsql;
 
-
-CREATE TRIGGER insertar_lista BEFORE INSERT
-ON lista FOR EACH ROW EXECUTE PROCEDURE f_insertNewList();
+CREATE TRIGGER inserta_lista4 BEFORE INSERT
+ON lista FOR EACH ROW EXECUTE PROCEDURE f_createLista();
